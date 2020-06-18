@@ -5,14 +5,18 @@
  * @param callback 全部完成的回调函数
  */
 function maxLimitRequest (urls, limit, callback) {
-  let temUrls = urls.splice()
+  let temUrls = urls.slice()
   let len = urls.length
   let count = 0
   let result = []
   let request = url => {
     count ++
     fetch(url).then(res => {
-      result.push(res.json())
+      let obj = {
+        url,
+        data: res.json()
+      }
+      result.push(obj)   //因为请求fetch的先后顺序不能保证，所以使用数据的时候，添加一个url来区别是哪个接口返回的数据
       let nextUrl = temUrls.shift()
       if (nextUrl) {
         request(nextUrl)
