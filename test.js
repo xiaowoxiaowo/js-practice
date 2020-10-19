@@ -1,3 +1,15 @@
 // 测试vscode的git功能
 // 这是github的修改
-// 这是test123分支的内容
+function test() {
+  var arr = [1, 3, 4];
+  arr.forEach((item) => {
+    console.log(item);
+  });
+}
+
+function test1() {
+  var arr = [1, 3, 4];
+  arr.forEach((item) => {
+    console.log(item);
+  });
+}
