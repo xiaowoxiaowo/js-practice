@@ -8,6 +8,7 @@ function test() {
 }
 
 function test1() {
+	
   var arr2 = [1, 7, 4];
   arr2.forEach((item) => {
     console.log(item);
