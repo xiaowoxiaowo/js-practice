@@ -1,2 +1,2 @@
 # js-practice
-一些js练习,小tip，js方法啊a1901
+一些js练习,小tip，js方法啊a19012
