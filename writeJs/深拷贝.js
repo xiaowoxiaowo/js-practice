@@ -1,3 +1,8 @@
+/**
+ * 深拷贝
+ * 判断正则类型，数据类型，基本数据类型
+ * 防止重复嵌套
+ */
 function deepClone(data, cache = new Weakmap()) {
   if (data instanceof RegExp) return new RegExp(data);
   if (data instanceof Date) return Date(data);
