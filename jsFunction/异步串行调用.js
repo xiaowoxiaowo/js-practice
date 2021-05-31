@@ -1,12 +1,12 @@
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const subFlow = createFlow([() => delay(1000).then(() => log("c"))]);
+const subFlow = createFlow([() => delay(1000).then(() => console.log("c"))]);
 
 createFlow([
-  () => log("a"),
-  () => log("b"),
+  () => console.log("a"),
+  () => console.log("b"),
   subFlow,
-  [() => delay(1000).then(() => log("d")), () => log("e")],
+  [() => delay(1000).then(() => console.log("d")), () => console.log("e")],
 ]).run(() => {
   console.log("done");
 });
@@ -14,25 +14,27 @@ createFlow([
 // 需要按照 a,b,延迟1秒,c,延迟1秒,d,e, done 的顺序打印
 
 // 不使用async/await,借鉴promise的嵌套实现
-function createFlow(effects = []) {
-  let sources = effects.slice().flat();
-  function run(callback) {
+function createFlow(arr = []) {
+  let sources = arr.flat();
+  function run(cb) {
     while (sources.length) {
       const task = sources.shift();
       // 把callback放到下一个flow的callback时机里执行
-      const next = () => createFlow(sources).run(callback)
+      const next = () => createFlow(sources).run(cb);
       if (typeof task === "function") {
         const res = task();
         if (res?.then) {
+          // 如果当前项是promise函数，将接下去的方法next放到promise之后的then中去运行
           res.then(next);
           return;
         }
       } else if (task?.isFlow) {
+        // 如果当前项也是一个createFlow返回的对象，将接下去的方法next放到该对象的run方法中运行
         task.run(next);
         return;
       }
     }
-    callback?.();
+    cb?.();
   }
   return {
     run,
@@ -41,14 +43,14 @@ function createFlow(effects = []) {
 }
 
 //使用async/await
-function createFlow(list = []) {
-  return {
-    list: [...list].flat(),
-    async run(cb = () => {}) {
-      for(let i = 0; i < this.list.length; i++) {
-        typeof this.list[i] === 'function' ? await this.list[i]() : await this.list[i].run()
-      }
-      cb()
+const createFlow = (arr) => {
+  // 被flat拷贝的那一层数组是浅拷贝，所以这里不需要slice
+  const newArr = arr.flat();
+  const run = async (cb = () => {}) => {
+    for (let i = 0; i < newArr.length; i ++) {
+      typeof newArr[i] === 'function' ? await newArr[i]() : await newArr[i].run();
     }
+    cb();
   }
-}
+  return { run }
+};
