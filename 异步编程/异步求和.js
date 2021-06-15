@@ -22,7 +22,7 @@ function sendAddRequest(a, b) {
   })
 }
 
-async function sumT(...args) {
+async function sum(...args) {
   let res = 0;
   while(args.length > 0) {
     res = await sendAddRequest(res, args.shift());
