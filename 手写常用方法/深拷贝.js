@@ -7,13 +7,14 @@ function deepClone(data, cache = new Weakmap()) {
   if (data instanceof RegExp) return new RegExp(data);
   if (data instanceof Date) return Date(data);
   if (data === null || typeof data != 'object') return data;
-  let obj = new data.constructor()
-  if (cache.hasItem(obj)) {
-    return cache.getItem(obj);
-  }
+  let obj = new data.constructor();
+  if (cache.has(data)) {
+		return cache.get(data);
+	}	
+	cache.set(data, obj);
   for (let i in data) {
     if (data.hasOwnProperty(i)) {
-      obj[i] = data[i];
+      obj[i] = deepClone(data[i], cache);
     }
   }
   return obj;
