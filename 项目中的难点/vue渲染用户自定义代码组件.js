@@ -8,6 +8,7 @@
 
 // 1.css样式隔离
 // 在渲染js对象的外层加一层div来限制class，加一个随机生成的class，再对传入的css所有样式添加这个随机生成的class前缀
+// 小图标直接用class，一些图片用oss地址。css使用自己项目中从sass编译出来css代码。
 
 // 2.js语法错误
 try {
@@ -24,7 +25,8 @@ try {
 // 传入时，需要把这个错误的标志位重置，类似刷新组件
 
 // 4.变量
-// 主要使用echarts，echarts定义在全局的window上，所以可以直接获取
+// 主要使用echarts，echarts定义在全局的window上，所以可以直接获取，也可以注入一些变量比如直接对组件的computed对象赋值，传入一些store的数据。
+// 因为组件基本只会使用依次，所以将data改为了对象，可以将父级的参数直接定义到data的对象中。默认定义了data1-data10这样10个参数。
 
 // 5.防止xss注入
 // 传入的js需要执行，没办法直接转义。只对一些方法进行了软限制和清除，比如传入的console.log,alert,document.write,获取值的cookies,localStorage,sessionStorage，
