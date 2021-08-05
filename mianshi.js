@@ -3,12 +3,8 @@
  * tapable
  * module, chunk, bundle的区别
  * webpack优化构建速度(开发，生产)
- * POST和GET的区别
- * 继承（构造函数继承，原型链继承，最佳继承方式）
  * TCP三次握手，SYN，SYN.ACK，ACK；TCP四次握手关闭连接：FIN，ACK/FIN，ACK
  * 什么是同源策略以及限制
- * 跨域通信的几种方式：JSONP，Hash，PostMessage，WebSocket，CORS
- * 什么是DOCTYPE及作用
  * 重排Reflow
  * 重绘Repaint
  * 垃圾回收
