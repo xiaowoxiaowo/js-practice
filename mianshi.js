@@ -5,9 +5,6 @@
  * webpack优化构建速度(开发，生产)
  * POST和GET的区别
  * 继承（构造函数继承，原型链继承，最佳继承方式）
- * TCP和OSI的几层协议
- * webSocket
- * https非对称加密，为什么安全
  * TCP三次握手，SYN，SYN.ACK，ACK；TCP四次握手关闭连接：FIN，ACK/FIN，ACK
  * 什么是同源策略以及限制
  * 跨域通信的几种方式：JSONP，Hash，PostMessage，WebSocket，CORS
@@ -18,7 +15,6 @@
  * 
  * TCP 丢包阻塞问题
  * 一个异步任务调度器，最多同时执行两个异步任务
- * 你所知道的白屏原因
  * 
  * react hooks 实现原理
  * 说下输入一个 url 地址的全过程。
