@@ -68,11 +68,12 @@ const createFlow = (arr) => {
 function createFlow(arr = []) {
   const list = arr.flat();
   function run(cb = () => {}) {
-    while (true) {
+    while (list.length) {
       const cur = list.shift();
-      const next = () => createFlow([...list]).run(cb);
+      const next = () => createFlow(list).run(cb);
       if (typeof cur === 'function') {
-        if ()
+        const res = cur();
+        if (res?.then) return res.then(next);
       } else if (typeof cur === 'object' && cur !== null) {
         return cur.run(next);
       }
