@@ -42,35 +42,25 @@ function maxLimitRequest (urls, limit, callback) {
  */
 
 function multiRequest(urls = [], maxNum) {
+  let urlList = urls.slice();
   const len = urls.length;
   const result = new Array(len).fill(false);
-  let count = 0;
+  let total = 0;
   return new Promise((resolve, reject) => {
-    while (count < maxNum) {
-      next();
+    function next(url) {
+      fetch(url).then((res) => {
+        result[total] = res;
+      }).catch((err) => {
+        result[total] = err;
+      }).finally(() => {
+        total++;
+        if (total < len) next(urlList.shift());
+        if (total >= len) resolve(result);
+      });
     }
-    function next() {
-      let current = count++;
-      // 处理边界条件
-      if (current >= len) {
-        // 请求全部完成就将promise置为成功状态, 然后将result作为promise值返回
-        !result.includes(false) && resolve(result);
-        return;
-      }
-      const url = urls[current];
-      fetch(url)
-        .then((res) => {
-          result[current] = res;
-          if (current < len) {
-            next();
-          }
-        })
-        .catch((err) => {
-          result[current] = err;
-          if (current < len) {
-            next();
-          }
-        });
+    for (let i = 0; i < maxNum; i ++) {
+      const url = urlList.shift();
+      next(url);
     }
   });
 }

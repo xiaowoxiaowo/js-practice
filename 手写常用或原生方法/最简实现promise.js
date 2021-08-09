@@ -1,20 +1,17 @@
 function _Promise(fn) {
   const self = this;
-  self.onResolvedList = [];
-  const resolve = (value) => {
-    setTimeout(() => {
-      self.data = value;
-      self.onResolvedList.forEach(callback => callback());
-    });
-  };
-  fn(resolve);
+  this.cbList = [];
+  function resolved(data) {
+    self.cbList.forEach(fn => fn(data));
+  }
+  fn(resolved);
 }
 
-_Promise.prototype.then = function(onResolved) {
+_Promise.prototype.then = function(Resolved) {
   const self = this;
-  return new _Promise(resolve => {
-    self.onResolvedList.push(() => {
-      const result = onResolved(self.data);
+  return new _Promise((resolve) => {
+    self.cbList.push((data) => {
+      const result = Resolved(data);
       if (result instanceof _Promise) {
         result.then(resolve);
       } else {

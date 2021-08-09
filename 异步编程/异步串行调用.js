@@ -13,6 +13,15 @@ createFlow([
 
 // 需要按照 a,b,延迟1秒,c,延迟1秒,d,e, done 的顺序打印
 
+
+
+
+
+
+
+
+
+
 // 不使用async/await,借鉴promise的嵌套实现
 function createFlow(arr = []) {
   let sources = arr.flat();
@@ -54,3 +63,21 @@ const createFlow = (arr) => {
   }
   return { run }
 };
+
+
+function createFlow(arr = []) {
+  const list = arr.flat();
+  function run(cb = () => {}) {
+    while (true) {
+      const cur = list.shift();
+      const next = () => createFlow([...list]).run(cb);
+      if (typeof cur === 'function') {
+        if ()
+      } else if (typeof cur === 'object' && cur !== null) {
+        return cur.run(next);
+      }
+    }
+    cb();
+  }
+  return { run };
+}

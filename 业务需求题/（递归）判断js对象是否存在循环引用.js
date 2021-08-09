@@ -23,7 +23,7 @@ const isHasCircle = (obj) => {
         // 如果没有存储过，加入到WeakSet中
         map.add(val);
         // 继续递归
-        return loop(val);
+        if (loop(val)) return true;
       }
     }
     return false;

@@ -17,9 +17,8 @@ function compose(...arg){
 
 //调用ReduceRight()
 function compose1(...arg){
-	return function(initArg){
-		return args.reduceRight((init, current) => {
-			return current(init);
-		},initArg)
+	return function(d) {
+		return arg.reduceRight((init, fn) => fn(init),d);
 	}
 }
+

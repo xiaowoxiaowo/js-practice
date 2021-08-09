@@ -1,6 +1,6 @@
 const jsonp = ({ url, params, callbackName }) => {
   // 初始化回调函数名称
-  callbackName = callbackName || Math.random().toString().replace('.', '');
+  callbackName = callbackName || new Date().valueOf();
   const generateURL = () => {
     let dataStr = '';
     for(let key in params) {
