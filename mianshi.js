@@ -42,6 +42,4 @@ new Promise(function(resolve) {
 });
 console.log('script end');
 
-
-// 判断一个字符串最多只删1个字符，是否能成为一个回文字符串
 // 单向链表输出倒数第 K 个元素
