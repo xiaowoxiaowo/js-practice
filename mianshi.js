@@ -2,7 +2,6 @@
  * 
  * react hooks 实现原理
  * webpack hmr原理，怎么保留之前更改的状态 https://mp.weixin.qq.com/s/4fCBeNLhaWJYEcTb8cmakg
- * react-redux
  * vue-route，react-route，keep-alive
  * vue-hot-load，react-hot
  * 手写一个简单redux
