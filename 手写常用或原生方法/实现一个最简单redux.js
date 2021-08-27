@@ -1,10 +1,10 @@
-function createStore(reducer, preState, enhancer) {
-  let state;
+function createStore(reducer, initState, enhancer) {
+  let state = initState;
 	let listenters = [];
 	let isDispatching = false;
 
 	if (typeof enhancer !== 'undefined') {
-		return enhancer(createStore)(reducer, preState);
+		return enhancer(createStore)(reducer, initState);
 	}
 
   return {
