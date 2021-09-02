@@ -11,3 +11,7 @@ function getUrlQueryParams(url = location.search){
 	}
 	return params;
 }
+
+// 将下划线字符串转成驼峰字符串
+var str = 'xasd_xcc';
+var res = str.replace(/\_([a-z])/g, (all,$1) => $1.toUpperCase());
