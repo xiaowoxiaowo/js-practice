@@ -73,3 +73,14 @@ store.subscribe(() => console.log(store.getState()))
 
 store.dispatch({type: '+', val: 10})
 store.dispatch({type: '-', val: 10})
+
+
+function createThunkMiddleware() {
+  return ({ dispatch, getState }) => next => action => {
+    if (typeof action === 'function') {
+      return action(dispatch, getState);
+    }
+
+    return next(action);
+  };
+}

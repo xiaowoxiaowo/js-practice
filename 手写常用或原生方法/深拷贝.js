@@ -7,8 +7,8 @@
   if (data instanceof RegExp) return new RegExp(data);
   if (data instanceof Date) return new Date(data);
   if (typeof data !== 'object' || data === null) return data;
+  if (map.has(data)) return map.get(data);
   const obj = new data.constructor();
-  if (map.has(data)) return map.get(obj);
   map.set(data, obj);
   for (let i in data) {
     if (data.hasOwnProperty(i)) {

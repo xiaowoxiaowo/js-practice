@@ -46,21 +46,24 @@ function multiRequest(urls = [], maxNum) {
   const len = urls.length;
   const result = new Array(len).fill(false);
   let total = 0;
+  let cur = 0;
   return new Promise((resolve, reject) => {
-    function next(url) {
+    function next(url, index) {
       fetch(url).then((res) => {
-        result[total] = res;
+        result[index] = res;
       }).catch((err) => {
-        result[total] = err;
+        result[index] = err;
       }).finally(() => {
         total++;
-        if (total < len) next(urlList.shift());
+        if (total < len) next(urlList.shift(), cur);
         if (total >= len) resolve(result);
+        cur++;
       });
     }
     for (let i = 0; i < maxNum; i ++) {
       const url = urlList.shift();
-      next(url);
+      next(url, cur);
+      cur++;
     }
   });
 }
