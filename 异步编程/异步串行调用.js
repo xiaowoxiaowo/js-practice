@@ -16,12 +16,6 @@ createFlow([
 
 
 
-
-
-
-
-
-
 // 不使用async/await,借鉴promise的嵌套实现
 function createFlow(arr = []) {
   let sources = arr.flat();
