@@ -1,6 +1,17 @@
 /**
  * 
- * 
+ * 公司业务，技术栈，技术难点
+ * 函数式组件和class区别
+ * 函数式组件和16.8版本之前的函数组件区别
+ * useState怎么更改状态
+ * 怎么知道shouldComponent是否性能比原生的优化好
+ * babel-polyfill具体怎么配置
+ * 做组件用什么？babel-runtime
+ * 用了babel-runtime，用一些let，const需要注意什么
+ * es6后面的语法
+ * react fiber渲染模式具体
+ * let const 箭头函数会被babel编译成什么样子
+ * 公司技术挑战？
  * 
  * 文章推荐：手撸组件库之文档工具  https://juejin.cn/post/7002898476388319269?share_token=c0577819-087b-4c2d-9e85-11dac8e868ba
  * 

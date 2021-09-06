@@ -9,13 +9,13 @@ function _Promise(fn) {
 
 _Promise.prototype.then = function(Resolved) {
   const self = this;
-  return new _Promise((resolve) => {
+  return new _Promise((resolved) => {
     self.cbList.push((data) => {
       const result = Resolved(data);
       if (result instanceof _Promise) {
-        result.then(resolve);
+        result.then(resolved);
       } else {
-        resolve(result);
+        resolved(result);
       }
     });
   });
