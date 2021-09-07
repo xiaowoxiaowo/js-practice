@@ -11,7 +11,6 @@
  * es6后面的语法
  * react fiber渲染模式具体
  * let const 箭头函数会被babel编译成什么样子
- * 公司技术挑战？
  * 
  * 文章推荐：手撸组件库之文档工具  https://juejin.cn/post/7002898476388319269?share_token=c0577819-087b-4c2d-9e85-11dac8e868ba
  * 
